@@ -83,6 +83,23 @@ const abi = [
     ],
     name: "Transfer",
     type: "event"
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        name: "to",
+        type: "address"
+      },
+      {
+        indexed: false,
+        name: "value",
+        type: "uint256"
+      }
+    ],
+    name: "Mint",
+    type: "event"
   }
 ];
 

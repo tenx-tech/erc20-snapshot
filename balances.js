@@ -21,6 +21,10 @@ module.exports.createBalances = async data => {
   const setWithdrawals = event => {
     const wallet = event.from;
 
+    if (!wallet) {
+      return;
+    }
+
     let deposits = (balances.get(wallet) || {}).deposits || new BigNumber(0);
     let withdrawals = (balances.get(wallet) || {}).withdrawals || new BigNumber(0);
 
@@ -35,6 +39,8 @@ module.exports.createBalances = async data => {
     setWithdrawals(event);
   }
 
+  let totalSupply = new BigNumber(0);
+
   for (const [key, value] of balances.entries()) {
     if (key === "0x0000000000000000000000000000000000000000") {
       continue;
@@ -42,11 +48,18 @@ module.exports.createBalances = async data => {
 
     const balance = value.deposits.minus(value.withdrawals);
 
+    if (balance.gte(new BigNumber(0))) {
+      totalSupply = totalSupply.plus(new BigNumber(balance));
+    }
+
     closingBalances.push({
       wallet: key,
       balance: balance.div(10 ** parseInt(data.decimals)).toFixed(data.decimals)
     });
   }
+
+  console.log("totalSupply", totalSupply.toString());
+
 
   return enumerable
     .from(closingBalances)

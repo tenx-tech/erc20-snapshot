@@ -82,3 +82,35 @@ Checks each address to determine whether it is a smart contract or an Ethereum w
 - [Solidoc: Solidity Documentation Generator](https://github.com/CYBRToken/solidoc)
 - [SolFlattener: Solidity Flattener](https://github.com/CYBRToken/sol-flattener)
 - [Vesting Schedule](https://github.com/binodnp/vesting-schedule)
+
+# TENX
+
+```
+{
+  "provider": "https://mainnet.infura.io/v3/3095c8c299264c50a2924fe75dbb1444",
+  "contractAddress": "0x515ba0a2e286af10115284f151cf398688a69170",
+  "fromBlock": 7756172,
+  "toBlock": 12098755,
+  "format": "json",
+  "blocksPerBatch": 2500,
+  "delay": 0,
+  "checkIfContract": "no"
+}
+```
+
+
+# PAY
+
+```
+{
+  "provider": "https://mainnet.infura.io/v3/3095c8c299264c50a2924fe75dbb1444",
+  "contractAddress": "0xB97048628DB6B661D4C2aA833e95Dbe1A905B280",
+  "fromBlock": 3879982,
+  "toBlock": 12039858,
+  "format": "json",
+  "blocksPerBatch": 2500,
+  "delay": 0,
+  "checkIfContract": "no"
+}
+```
+

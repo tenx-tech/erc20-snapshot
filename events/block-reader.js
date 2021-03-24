@@ -6,6 +6,7 @@ const path = require("path");
 const { promisify } = require("util");
 
 const Parameters = require("../parameters").get();
+const Config = require("../config").getConfig();
 
 const readdirAsync = promisify(fs.readdir);
 const readFileAsync = promisify(fs.readFile);
@@ -14,9 +15,9 @@ const getMinimal = pastEvents => {
   return pastEvents.map(tx => {
     return {
       transactionHash: tx.transactionHash,
-      from: tx.returnValues["0"],
-      to: tx.returnValues["1"],
-      value: tx.returnValues["2"]._hex
+      from: tx.returnValues.from,
+      to: tx.returnValues.to,
+      value: tx.returnValues.value._hex
     };
   });
 };
@@ -32,7 +33,12 @@ module.exports.getEvents = async symbol => {
   console.log("Parsing files.");
 
   for await (const file of files) {
-    console.log("Parsing ", file);
+    const block = Number(file.split(".")[0]);
+
+    if (block > Config.toBlock) {
+      console.log("stopping after block", block);
+      break;
+    }
 
     const contents = await readFileAsync(path.join(directory, file));
     const parsed = JSON.parse(contents.toString());

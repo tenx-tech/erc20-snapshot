@@ -2,7 +2,6 @@
 
 const Web3 = require("web3");
 
-const BlockByBlock = require("./block-by-block");
 const BlockReader = require("./block-reader");
 const Config = require("../config").getConfig();
 const Contract = require("../contract").getContract();
@@ -30,12 +29,15 @@ const groupBy = (objectArray, property) => {
 const tryGetEvents = async (start, end, symbol) => {
   try {
     const pastEvents = await Contract.getPastEvents("Transfer", { fromBlock: start, toBlock: end });
+    const mintEvents = await Contract.getPastEvents("Mint", { fromBlock: start, toBlock: end });
 
-    if (pastEvents.length) {
-      console.info("Successfully imported ", pastEvents.length, " events");
+    const events = [...pastEvents, ...mintEvents];
+
+    if (events.length) {
+      console.info("Successfully imported ", events.length, " events");
     }
 
-    const group = groupBy(pastEvents, "blockNumber");
+    const group = groupBy(events, "blockNumber");
 
     for (let key in group) {
       if (group.hasOwnProperty(key)) {
@@ -48,8 +50,7 @@ const tryGetEvents = async (start, end, symbol) => {
       }
     }
   } catch (e) {
-    console.log("Could not get events due to an error. Now checking block by block.");
-    await BlockByBlock.tryBlockByBlock(Contract, start, end, symbol);
+    console.log("Could not get events due to an error. Now checking block by block.", e);
   }
 };
 
