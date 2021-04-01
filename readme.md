@@ -83,6 +83,9 @@ Checks each address to determine whether it is a smart contract or an Ethereum w
 - [SolFlattener: Solidity Flattener](https://github.com/CYBRToken/sol-flattener)
 - [Vesting Schedule](https://github.com/binodnp/vesting-schedule)
 
+
+Block 12150805 = (Apr-01-2021 02:03:35 AM +UTC)
+
 # TENX
 
 ```
@@ -90,7 +93,7 @@ Checks each address to determine whether it is a smart contract or an Ethereum w
   "provider": "https://mainnet.infura.io/v3/3095c8c299264c50a2924fe75dbb1444",
   "contractAddress": "0x515ba0a2e286af10115284f151cf398688a69170",
   "fromBlock": 7756172,
-  "toBlock": 12039858,
+  "toBlock": 12150805,
   "format": "csv",
   "blocksPerBatch": 2500,
   "delay": 0,
@@ -106,7 +109,7 @@ Checks each address to determine whether it is a smart contract or an Ethereum w
   "provider": "https://mainnet.infura.io/v3/3095c8c299264c50a2924fe75dbb1444",
   "contractAddress": "0xB97048628DB6B661D4C2aA833e95Dbe1A905B280",
   "fromBlock": 3879982,
-  "toBlock": 12039858,
+  "toBlock": 12150805,
   "format": "csv",
   "blocksPerBatch": 2500,
   "delay": 0,
