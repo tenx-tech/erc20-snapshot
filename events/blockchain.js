@@ -62,7 +62,8 @@ module.exports.get = async () => {
   var fromBlock = parseInt(Config.fromBlock) || 0;
   const blocksPerBatch = parseInt(Config.blocksPerBatch) || 0;
   const delay = parseInt(Config.delay) || 0;
-  const toBlock = blockHeight;
+  const toBlock = blockHeight + blocksPerBatch;
+  console.log("blockHeight", blockHeight);
 
   const lastDownloadedBlock = await LastDownloadedBlock.get(symbol);
 
